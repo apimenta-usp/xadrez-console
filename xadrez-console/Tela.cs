@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using tabuleiro;
+using xadrez;
 
 namespace xadrez_console {
     class Tela {
@@ -36,6 +37,15 @@ namespace xadrez_console {
                 Console.Write((char)(letra + i) + " ");
             }
             Console.WriteLine();
+        }
+
+        public static PosicaoXadrez lerPosicaoXadrez() {
+            string s = Console.ReadLine();
+            char coluna = s[0];
+            int linha = int.Parse(s[1] + "");
+            /* Na linha acima, para o programa entender o Parse do char na posição 1, foi 
+               preciso acrescentar as aspas para fazer uma conversão explícita para string. */
+            return new PosicaoXadrez(coluna, linha);
         }
 
         public static void imprimirPeca(Peca peca) {
