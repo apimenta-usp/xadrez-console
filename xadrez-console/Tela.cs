@@ -1,10 +1,40 @@
 ﻿using System;
-using System.Drawing;
+using System.Collections.Generic;
 using tabuleiro;
 using xadrez;
 
 namespace xadrez_console {
     class Tela {
+
+        public static void imprimirPartida(PartidaDeXadrez partida) {
+            Tela.imprimirTabuleiro(partida.tab);
+            Console.WriteLine();
+            imprimirPecasCapturadas(partida);
+            Console.WriteLine();
+            Console.WriteLine("Turno: " + partida.turno);
+            Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+        }
+
+        public static void imprimirPecasCapturadas(PartidaDeXadrez partida) {
+            Console.WriteLine("Peças capturadas:");
+            Console.Write("Brancas: ");
+            imprimirConjunto(partida.pecasCapturadas(Cor.Branca));
+            Console.WriteLine();
+            ConsoleColor corPadrao = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("Pretas: ");
+            imprimirConjunto(partida.pecasCapturadas(Cor.Preta));
+            Console.ForegroundColor = corPadrao;
+            Console.WriteLine();
+        }
+
+        public static void imprimirConjunto(HashSet<Peca> conjunto) {
+            Console.Write("[ ");
+            foreach(Peca x in conjunto) {
+                Console.Write(x + " ");
+            }
+            Console.Write("]");
+        }
 
         public static void imprimirTabuleiro(Tabuleiro tab) {
 
@@ -54,7 +84,7 @@ namespace xadrez_console {
                 imprimirTraco(i, j);
                 Console.Write(" ");
             } else {
-                if (peca.cor == Cor.Branco) {
+                if (peca.cor == Cor.Branca) {
                     Console.Write(peca);
                 } else {
                     ConsoleColor corPadrao = Console.ForegroundColor;
