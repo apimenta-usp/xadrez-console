@@ -48,6 +48,7 @@ namespace xadrez {
                     mat[pos.linha, pos.coluna] = true;
                 }
             } else {
+                // Testando casa abaixo
                 pos.definirValores(posicao.linha + 1, posicao.coluna);
                 if (tab.posicaoValida(pos) && livre(pos)) {
                     mat[pos.linha, pos.coluna] = true;
@@ -58,13 +59,13 @@ namespace xadrez {
                     }
                 }
 
-                // Testando casa nordeste
+                // Testando casa sudeste
                 pos.definirValores(posicao.linha + 1, posicao.coluna + 1);
                 if (tab.posicaoValida(pos) && existeInimigo(pos)) {
                     mat[pos.linha, pos.coluna] = true;
                 }
 
-                // Testando casa noroeste
+                // Testando casa sudoeste
                 pos.definirValores(posicao.linha + 1, posicao.coluna - 1);
                 if (tab.posicaoValida(pos) && existeInimigo(pos)) {
                     mat[pos.linha, pos.coluna] = true;
