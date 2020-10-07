@@ -1,7 +1,7 @@
 ﻿using tabuleiro;
 
 namespace xadrez {
-    class Bispo : Rei {
+    class Bispo : Peca {
 
         public Bispo(Tabuleiro tab, Cor cor) : base(tab, cor) {
         }
