@@ -133,8 +133,9 @@ namespace xadrez {
             // #jogadaespecial en passant
             if (p is Peao && (destino.linha == origem.linha - 2 || destino.linha == origem.linha + 2)) {
                 vulneravelEnPassant = p;
+            } else {
+                vulneravelEnPassant = null;
             }
-
         }
 
         public void validarPosicaoDeOrigem(Posicao pos) {
