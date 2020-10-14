@@ -6,12 +6,6 @@ namespace xadrez_console {
     class Program {
         static void Main(string[] args) {
 
-            //PosicaoXadrez pos = new PosicaoXadrez('c', 7);
-
-            //Console.WriteLine(pos);
-
-            //Console.WriteLine(pos.toPosicao());
-
             try {
                 PartidaDeXadrez partida = new PartidaDeXadrez();
 
@@ -37,8 +31,12 @@ namespace xadrez_console {
                         partida.validarPosicaoDeDestino(origem, destino);
 
                         partida.realizarJogada(origem, destino);
-                    } catch(TabuleiroException e) {
+                    } catch (TabuleiroException e) {
                         Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    } catch (Exception) {
+                        Console.WriteLine("O valor digitado está incorreto!");
+                        //Console.WriteLine(e.StackTrace);
                         Console.ReadLine();
                     }
                 }

@@ -78,10 +78,35 @@ namespace xadrez_console {
             imprimirLetra(tab);
         }
 
+        private static bool validarLinha(string s, int linha) {
+            if ((int.TryParse((s[1] + ""), out linha)) && (linha == 1 || linha == 2 || linha == 3 || 
+                linha == 4 || linha == 5 || linha == 6 || linha == 7 || linha == 8)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        private static bool validarColuna(string s, char coluna) {
+            if (coluna == 'a' || coluna == 'b' || coluna == 'c' || coluna == 'd' || 
+                coluna == 'e' || coluna == 'f' || coluna == 'g' || coluna == 'h') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public static PosicaoXadrez lerPosicaoXadrez() {
             string s = Console.ReadLine();
             char coluna = s[0];
-            int linha = int.Parse(s[1] + "");
+            int linha = 0;
+            if (validarLinha(s, linha) && validarColuna(s, coluna)) {
+                coluna = s[0];
+                linha = int.Parse(s[1] + "");
+            } else {
+                throw new TabuleiroException("O valor digitado está incorreto!");
+            }
+            //int linha = int.Parse(s[1] + "");
             /* Na linha acima, para o programa entender o Parse do char na posição 1, foi 
                preciso acrescentar as aspas para fazer uma conversão explícita para string. */
             return new PosicaoXadrez(coluna, linha);
