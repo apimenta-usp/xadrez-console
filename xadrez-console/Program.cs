@@ -34,8 +34,8 @@ namespace xadrez_console {
                     } catch (TabuleiroException e) {
                         Console.WriteLine(e.Message);
                         Console.ReadLine();
-                    } catch (Exception) {
-                        Console.WriteLine("O valor digitado está incorreto!");
+                    } catch (Exception e) {
+                        Console.WriteLine(e.Message);
                         //Console.WriteLine(e.StackTrace);
                         Console.ReadLine();
                     }
