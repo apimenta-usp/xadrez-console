@@ -7,6 +7,8 @@ namespace xadrez_console {
         static void Main(string[] args) {
 
             try {
+                Tela.imprimirTelaInicial();
+
                 PartidaDeXadrez partida = new PartidaDeXadrez();
 
                 while (!partida.terminada) {

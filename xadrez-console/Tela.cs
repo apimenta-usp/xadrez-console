@@ -6,6 +6,56 @@ using xadrez;
 namespace xadrez_console {
     class Tela {
 
+        public static void imprimirTelaInicial() {
+            Console.Clear();
+            ConsoleColor corPadrao = Console.ForegroundColor;
+            Console.WriteLine();
+            Console.WriteLine("#  #  #  #  #  #  #  #  #  #");
+            Console.WriteLine("#                          #");
+            Console.Write("#      ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("JOGO DE XADREZ");
+            Console.ForegroundColor = corPadrao;
+            Console.WriteLine("      #");
+            Console.Write("#        ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("EM CONSOLE");
+            Console.ForegroundColor = corPadrao;
+            Console.WriteLine("        #");
+            Console.WriteLine("#                          #");
+            Console.WriteLine("#  #  #  #  #  #  #  #  #  #");
+            Console.WriteLine();
+            Console.WriteLine("Criado e projetado por:");
+            Console.WriteLine("Nelio Alves");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Editado e personalizado por:");
+            Console.WriteLine("Adriano Pimenta");
+            Console.ForegroundColor = corPadrao;
+            Console.WriteLine();
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("Como jogar:");
+            Console.WriteLine("1) Digite as coordenadas da peça");
+            Console.WriteLine("   a ser movida (origem);");
+            Console.WriteLine("2) Digite as coordenadas do local");
+            Console.WriteLine("   para onde mover a peça (destino).");
+            Console.WriteLine();
+            Console.WriteLine("Exemplo:");
+            Console.WriteLine("Origem: c4");
+            Console.WriteLine("Destino: e6");
+            Console.WriteLine();
+            Console.WriteLine("P = Peão");
+            Console.WriteLine("T = Torre");
+            Console.WriteLine("C = Cavalo");
+            Console.WriteLine("B = Bispo");
+            Console.WriteLine("D = Dama");
+            Console.WriteLine("R = Rei");
+            Console.WriteLine();
+            Console.ReadLine();
+        }
+
         public static void imprimirPartida(PartidaDeXadrez partida) {
             Tela.imprimirTabuleiro(partida.tab);
             Console.WriteLine();
@@ -13,22 +63,40 @@ namespace xadrez_console {
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.turno);
             if (!partida.terminada) {
-                Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+                Console.Write("Aguardando jogada: ");
+                if(partida.jogadorAtual == Cor.Preta) {
+                    ConsoleColor corPadrao = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine(partida.jogadorAtual);
+                    Console.ForegroundColor = corPadrao;
+                } else {
+                Console.WriteLine(partida.jogadorAtual);
+                }
                 if (partida.xeque) {
                     Console.WriteLine("\nXEQUE!");
                 }
             } else {
                 Console.WriteLine("\nXEQUE-MATE!");
-                Console.WriteLine("Vencedor: " + partida.jogadorAtual);
+                Console.Write("Vencedor: ");
+                if (partida.jogadorAtual == Cor.Preta) {
+                    ConsoleColor corPadrao = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine(partida.jogadorAtual);
+                    Console.ForegroundColor = corPadrao;
+                } else {
+                    Console.WriteLine(partida.jogadorAtual);
+                }
             }
         }
 
         public static void imprimirPecasCapturadas(PartidaDeXadrez partida) {
+            ConsoleColor corPadrao = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Peças capturadas:");
+            Console.ForegroundColor = corPadrao;
             Console.Write("Brancas: ");
             imprimirConjunto(partida.pecasCapturadas(Cor.Branca));
             Console.WriteLine();
-            ConsoleColor corPadrao = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("Pretas: ");
             imprimirConjunto(partida.pecasCapturadas(Cor.Preta));
@@ -146,6 +214,8 @@ namespace xadrez_console {
         }
 
         public static void imprimirLetra(Tabuleiro tab) {
+            ConsoleColor corPadrao = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             if (tab.linhas < 10) {
                 Console.Write("  ");
             } else {
@@ -156,9 +226,12 @@ namespace xadrez_console {
                 Console.Write((char)(letra + i) + " ");
             }
             Console.WriteLine();
+            Console.ForegroundColor = corPadrao;
         }
 
         public static void imprimirNumero(Tabuleiro tab, int i) {
+            ConsoleColor corPadrao = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             if (tab.linhas < 10) {
                 Console.Write(tab.linhas - i + " ");
             } else if (tab.linhas - i < 10) {
@@ -166,6 +239,7 @@ namespace xadrez_console {
             } else {
                 Console.Write(tab.linhas - i + " ");
             }
+            Console.ForegroundColor = corPadrao;
         }
     }
 }
