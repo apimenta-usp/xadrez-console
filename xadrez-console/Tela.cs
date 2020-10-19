@@ -72,6 +72,18 @@ namespace xadrez_console {
                 } else {
                 Console.WriteLine(partida.jogadorAtual);
                 }
+                if (partida.roquePequeno) {
+                    Console.WriteLine("\nJogada 'roque pequeno'!");
+                }
+                if (partida.roqueGrande) {
+                    Console.WriteLine("\nJogada 'roque grande'!");
+                }
+                if (partida.enPassant) {
+                    Console.WriteLine("\nJogada 'en passant'!");
+                }
+                if (partida.promocaoPeao) {
+                    Console.WriteLine("\nPeão promovido a Dama!");
+                }
                 if (partida.xeque) {
                     Console.WriteLine("\nXEQUE!");
                 }

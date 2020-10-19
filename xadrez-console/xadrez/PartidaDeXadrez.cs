@@ -10,6 +10,10 @@ namespace xadrez {
         public bool terminada { get; private set; }
         private HashSet<Peca> pecas;
         private HashSet<Peca> capturadas;
+        public bool roquePequeno { get; private set; }
+        public bool roqueGrande { get; private set; }
+        public bool enPassant { get; private set; }
+        public bool promocaoPeao { get; private set; }
         public bool xeque { get; private set; }
         public Peca vulneravelEnPassant { get; private set; }
 
@@ -18,6 +22,10 @@ namespace xadrez {
             turno = 1;
             jogadorAtual = Cor.Branca;
             terminada = false;
+            roquePequeno = false;
+            roqueGrande = false;
+            enPassant = false;
+            promocaoPeao = false;
             xeque = false;
             vulneravelEnPassant = null;
             pecas = new HashSet<Peca>();
@@ -52,9 +60,9 @@ namespace xadrez {
             }
             // #jogadaespecial en passant
             if (p is Peao) {
-                if(origem.coluna != destino.coluna && pecaCapturada == null) {
+                if (origem.coluna != destino.coluna && pecaCapturada == null) {
                     Posicao posP;
-                    if(p.cor == Cor.Branca) {
+                    if (p.cor == Cor.Branca) {
                         posP = new Posicao(destino.linha + 1, destino.coluna);
                     } else {
                         posP = new Posicao(destino.linha - 1, destino.coluna);
@@ -118,14 +126,32 @@ namespace xadrez {
             Peca p = tab.peca(destino);
 
             // #jogadaespecial promoção
-            if(p is Peao) {
-                if(p.cor == Cor.Branca && destino.linha == 0 || p.cor == Cor.Preta && destino.linha == 7) {
+            if (p is Peao) {
+                if (p.cor == Cor.Branca && destino.linha == 0 || p.cor == Cor.Preta && destino.linha == 7) {
                     p = tab.retirarPeca(destino);
                     pecas.Remove(p);
                     Peca dama = new Dama(tab, p.cor);
                     tab.colocarPeca(dama, destino);
                     pecas.Add(dama);
                 }
+            }
+
+            if (p is Rei && destino.coluna == origem.coluna + 2) {
+                roquePequeno = true;
+            } else {
+                roquePequeno = false;
+            }
+
+            if (p is Rei && destino.coluna == origem.coluna - 2) {
+                roqueGrande = true;
+            } else {
+                roqueGrande = false;
+            }
+
+            if (p is Peao && (p.cor == Cor.Branca && destino.linha == 0 || p.cor == Cor.Preta && destino.linha == 7)) {
+                promocaoPeao = true;
+            } else {
+                promocaoPeao = false;
             }
 
             if (estaEmXeque(adversaria(jogadorAtual))) {
@@ -146,6 +172,12 @@ namespace xadrez {
                 vulneravelEnPassant = p;
             } else {
                 vulneravelEnPassant = null;
+            }
+
+            if (p is Peao && origem.coluna != destino.coluna && pecaCapturada == vulneravelEnPassant) {
+                enPassant = true;
+            } else {
+                enPassant = false;
             }
         }
 
