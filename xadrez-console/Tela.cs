@@ -33,7 +33,9 @@ namespace xadrez_console {
             Console.WriteLine("Adriano Pimenta");
             Console.ForegroundColor = corPadrao;
             Console.WriteLine();
-            Console.ReadLine();
+            Console.WriteLine("Pressione qualquer tecla para continuar...");
+            Console.ReadKey(true);
+            //Console.ReadLine();
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine("Como jogar:");
@@ -53,7 +55,9 @@ namespace xadrez_console {
             Console.WriteLine("D = Dama");
             Console.WriteLine("R = Rei");
             Console.WriteLine();
-            Console.ReadLine();
+            Console.WriteLine("Pressione qualquer tecla para continuar...");
+            Console.ReadKey(true);
+            //Console.ReadLine();
         }
 
         public static void imprimirPartida(PartidaDeXadrez partida) {

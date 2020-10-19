@@ -35,11 +35,13 @@ namespace xadrez_console {
                         partida.realizarJogada(origem, destino);
                     } catch (TabuleiroException e) {
                         Console.WriteLine(e.Message);
-                        Console.ReadLine();
+                        Console.ReadKey(true);
+                        //Console.ReadLine();
                     } catch (Exception e) {
                         Console.WriteLine(e.Message);
                         //Console.WriteLine(e.StackTrace);
-                        Console.ReadLine();
+                        Console.ReadKey(true);
+                        //Console.ReadLine();
                     }
                 }
                 Console.Clear();
@@ -49,7 +51,10 @@ namespace xadrez_console {
                 Console.WriteLine(e.Message);
             }
 
-            Console.ReadLine();
+            Console.WriteLine();
+            Console.WriteLine("Pressione qualquer tecla para sair...");
+            Console.ReadKey(true);
+            //Console.ReadLine();
         }
     }
 }
