@@ -69,8 +69,9 @@ namespace xadrez {
                     }
                     pecaCapturada = tab.retirarPeca(posP);
                     capturadas.Add(pecaCapturada);
-                }
-            }
+                    enPassant = true;
+                } else enPassant = false;
+            } else enPassant = false;
 
             return pecaCapturada;
         }
@@ -111,6 +112,7 @@ namespace xadrez {
                         posP = new Posicao(destino.linha - 1, destino.coluna);
                     }
                     tab.colocarPeca(peao, posP);
+                    enPassant = false;
                 }
             }
         }
@@ -172,12 +174,6 @@ namespace xadrez {
                 vulneravelEnPassant = p;
             } else {
                 vulneravelEnPassant = null;
-            }
-
-            if (p is Peao && origem.coluna != destino.coluna && pecaCapturada == vulneravelEnPassant) {
-                enPassant = true;
-            } else {
-                enPassant = false;
             }
         }
 
